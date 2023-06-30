@@ -1,11 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const puppeteer = require("puppeteer");
+const chrome = require("chrome-aws-lambda");
 const port = process.env.PORT || 4000;
 
 async function getResult(url) {
   const browser = await puppeteer.launch({
-    headless: 'new'
+    headless: chrome.headless,
+    defaultViewport: chrome.defaultViewport,
+    executablePath: await chrome.executablePath,
+    args: chrome.args,
+    ignoreHTTPSErrors: true
   });
   const page = await browser.newPage();
 
