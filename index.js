@@ -47,7 +47,11 @@ app.listen(port, () => {
 });
 
 app.get("/logoquiz", async (req, res) => {
-  const url = "https://logoquiz.net/"; // Ganti dengan URL yang diinginkan
-  const gets = await getResult(url);
-  res.json(gets);
+  try {
+    const url = "https://logoquiz.net/"; // Ganti dengan URL yang diinginkan
+    const gets = await getResult(url);
+    res.json(gets);
+  } catch (err) {
+    res.json(err);
+  }
 });
