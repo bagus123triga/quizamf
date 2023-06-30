@@ -10,9 +10,11 @@ async function getResult(url) {
     defaultViewport: chrome.defaultViewport,
     executablePath: await chrome.executablePath,
     args: chrome.args,
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
+
+  console.log(await chrome.executablePath);
 
   await page.goto(url);
   await page.waitForSelector("#main > div > button.button.primary.full-width");
